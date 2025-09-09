@@ -17,7 +17,7 @@ const generate = async (text) => {
     let llmResponse = "Replying...";
     await postChat(text)
         .then(response => {
-            llmResponse = response.message; // JSON data returned from the server
+            llmResponse = response.message;
         })
         .catch(error => {
             console.error('Error:', error);
