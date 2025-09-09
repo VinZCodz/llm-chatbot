@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinz Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Hide scrollbar for a cleaner look */
+        .hide-scrollbar::-webkit-scrollbar {
+            width: 0.5rem;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar-thumb {
+            background-color: transparent;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-zinc-900 text-gray-200 flex flex-col h-full">
+
+    <!-- Chat Area -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+
+        <!-- Messages Container -->
+        <main class="flex-1 overflow-y-auto p-6 hide-scrollbar">
+            <div class="max-w-5xl mx-auto space-y-6" id="chat-container">
+                <!-- User message -->
+                <!-- AI response -->
+            </div>
+        </main>
+
+        <!-- Message Input Area -->
+        <footer class="bg-zinc-800 p-4 border-t border-zinc-700 flex items-center justify-center">
+            <div class="w-full max-w-5xl flex items-end">
+                <textarea id="input-msg" placeholder="Type your message"
+                    class="flex-1 bg-zinc-700 text-gray-200 rounded-xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2 border border-transparent focus:border-blue-500 transition-colors duration-200 resize-none max-h-48 overflow-y-auto hide-scrollbar"></textarea>
+                <button id="send"
+                    class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors duration-200 focus:outline-none mb-3">
+                    Send
+                </button>
+            </div>
+        </footer>
+    </div>
+    <script src="./script.js"></script>
+    <script src="./client.js"></script> 
+</body>
+
+</html>
