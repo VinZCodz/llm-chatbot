@@ -3,11 +3,11 @@
 **Building an LLM chat application with:**
 
 
-1. Frontend: Using vanila JS, HTML and Tailwind CSS
+1. Frontend: Using vanilla JS, HTML and Tailwind CSS
 2. Backend: Node.js runtime, with Express server.
-3. LLM: Conversational Model, grounded with internet toolling, Tavily.
+3. LLM: Conversational Model, grounded with internet tolling, Tavily.
 
-LLM output are finetuned with clear and consice few-shot prompts kept seprate in a prompt file.
+LLM output are fine tuned with clear and concise few-shot prompts kept separate in a prompt file.
 
 ------------
 ### End Result:
