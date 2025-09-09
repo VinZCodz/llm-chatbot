@@ -1,2 +1,14 @@
-# llm-chatbot
-Building a shallow clone of LLM chat application, using vanila JS, HTML and Tailwind CSS, Node.js runtime.
+# My ChatBot End-to-End application.
+
+**Building an LLM chat application with:**
+
+
+1. Frontend: Using vanila JS, HTML and Tailwind CSS
+2. Backend: Node.js runtime, with Express server.
+3. LLM: Conversational Model, grounded with internet toolling, Tavily.
+
+LLM output are finetuned with clear and consice few-shot prompts kept seprate in a prompt file.
+
+------------
+### End Result:
+<img width="1390" height="1373" alt="Capture" src="https://github.com/user-attachments/assets/ae65c6d2-eda6-42a1-be40-ff2abe9c1ef7" />
