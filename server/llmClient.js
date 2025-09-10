@@ -1,13 +1,10 @@
 import Groq from "groq-sdk";
 import { tools, availableFunctions } from './toolsHelper.js';
-import fs from "fs/promises";
+import { getCachedData, updateCacheData } from './cache.js';
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-const instructions = await fs.readFile("systemPrompt.txt", "utf-8");
-const messages = [{ "role": "system", "content": instructions }];
-
-const invokeLLM = async () =>
+const invokeLLM = async (messages) =>
     await groq.chat.completions.create({
         model: "openai/gpt-oss-20b",
         messages: messages,
@@ -15,19 +12,23 @@ const invokeLLM = async () =>
         tool_choice: "auto"
     });
 
-export const runLLMClient = async (userMsg) => {
+export const runLLMClient = async (userMsg, sessionId) => {
     try {
+        const messages = await getCachedData(sessionId);
         messages.push({ "role": "user", "content": userMsg });
-
-        const response = await invokeLLM();
+        
+        const response = await invokeLLM(messages);
         const responseMessage = response.choices[0].message;
 
-        if (!responseMessage.tool_calls)
+        if (!responseMessage.tool_calls){
+            messages.push({ "role": "assistant", "content": responseMessage.content });
+            await updateCacheData(sessionId, messages);
             return responseMessage.content;
+        }
         else {
             const toolCalls = responseMessage.tool_calls || [];
 
-            messages.push(responseMessage);
+            const toolMessages=[responseMessage];
 
             //Boiler Plate for tool calling. 
             for (const toolCall of toolCalls) {
@@ -38,7 +39,7 @@ export const runLLMClient = async (userMsg) => {
 
                 //Boiler Plate for passing back. 
                 if (functionResponse) {
-                    messages.push({
+                    toolMessages.push({
                         role: "tool",
                         content: functionResponse,
                         tool_call_id: toolCall.id,
@@ -47,7 +48,10 @@ export const runLLMClient = async (userMsg) => {
             }
             
             //Boiler Plate for passing back. 
-            const finalResponse = await invokeLLM();
+            const finalResponse = await invokeLLM([...messages, ...toolMessages]);
+
+            messages.push({ "role": "assistant", "content": finalResponse.choices[0].message.content });
+            await updateCacheData(sessionId, messages);
 
             return finalResponse.choices[0].message.content;
         }
