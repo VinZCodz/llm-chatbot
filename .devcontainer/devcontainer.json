@@ -1,0 +1,19 @@
+{
+  "name": "my-llm-chat-dev-container ",
+  "image": "mcr.microsoft.com/devcontainers/universal",
+  "features": {
+
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // Add any VS Code settings you want
+      },
+      "extensions": [
+        "streetsidesoftware.code-spell-checker",
+        "ritwickdey.liveserver",
+      ]
+    }
+  },
+  "postCreateCommand": "cd server && npm install",
+}

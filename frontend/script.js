@@ -1,6 +1,7 @@
 let inputMsg = document.querySelector('#input-msg');
 const chatContainer = document.querySelector('#chat-container');
 const sendBtn = document.querySelector('#send');
+const loader = document.querySelector('#reply-loader');
 
 const generate = async (text) => {
     const userDiv = document.createElement('div');
@@ -14,7 +15,9 @@ const generate = async (text) => {
     chatContainer.appendChild(userDiv);
     inputMsg.value = '';
 
-    let llmResponse = "Replying...";
+    loader.classList.toggle('hidden');
+
+    let llmResponse = "";
     await postChat(text)
         .then(response => {
             llmResponse = response.message;
@@ -30,7 +33,9 @@ const generate = async (text) => {
     const responseDiv = document.createElement('div');
     responseDiv.className = 'bg-zinc-700 text-gray-100 rounded-xl rounded-tl-none p-4 shadow-lg max-w-lg';
     responseDiv.textContent = llmResponse;
-
+    
+    loader.classList.toggle('hidden');
+    
     aiDiv.appendChild(responseDiv);
     chatContainer.appendChild(aiDiv);
 }
