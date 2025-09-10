@@ -5,7 +5,8 @@
 
 1. Frontend: Using vanilla JS, HTML and Tailwind CSS
 2. Backend: Node.js runtime, with Express server.
-3. LLM: Conversational Model, grounded with internet tolling, Tavily.
+3. LLM and Tool use: Conversational Model, grounded with internet tolling, Tavily.
+4. Caching: In-memory caching, via node cache, to reserve the chat context.
 
 LLM output are fine tuned with clear and concise few-shot prompts kept separate in a prompt file.
 
