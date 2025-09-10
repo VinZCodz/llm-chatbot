@@ -13,3 +13,4 @@ LLM output are fine tuned with clear and concise few-shot prompts kept separate 
 ------------
 ### End Result:
 <img width="1390" height="1373" alt="Capture" src="https://github.com/user-attachments/assets/ae65c6d2-eda6-42a1-be40-ff2abe9c1ef7" />
+<img width="2493" height="1349" alt="Untitled" src="https://github.com/user-attachments/assets/2861a189-9301-44c7-890d-e32e17d15b93" />
