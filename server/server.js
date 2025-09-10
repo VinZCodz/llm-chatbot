@@ -12,14 +12,14 @@ const port = 3000;
 
 app.post('/v1/chat', async (req, res) => {
     try {
-        const { message } = req.body;
+        const { message, sessionId } = req.body;
 
-        if (!message) {
-            return res.status(400).json({ error: "User chat message can't be empty" });
+        if (!message || !sessionId) {
+            return res.status(400).json({ error: "User chat message or session can't be empty" });
         }
-        console.log(`Received new user message: ${message}`);
+        console.log(`Received new user message: ${message} at session: ${sessionId}`);
 
-        const response = await runLLMClient(message);
+        const response = await runLLMClient(message, sessionId);
 
         res.status(201).json({ message: response });
     } catch (error) {
